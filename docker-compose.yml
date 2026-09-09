@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./backend
+    container_name: ecommerce-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    container_name: ecommerce-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend

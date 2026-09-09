@@ -1,0 +1,67 @@
+.superadmin-container {
+  margin-top: 2rem;
+}
+
+.superadmin-add-btn {
+  width: auto;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.superadmin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+
+.superadmin-permissions-label {
+  margin: 0 0 0.5rem;
+}
+
+.superadmin-permission-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 1rem;
+}
+
+.superadmin-form-error {
+  color: var(--danger);
+  margin: 0;
+}
+
+.superadmin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.superadmin-table-head-row {
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.superadmin-table-row {
+  border-bottom: 1px solid var(--border);
+}
+
+.superadmin-edit-permissions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.superadmin-status-active {
+  color: var(--success-dark);
+}
+
+.superadmin-status-deactivated {
+  color: var(--danger);
+  font-weight: bold;
+}
+
+.superadmin-btn-spacer {
+  margin-left: 0.5rem;
+}
