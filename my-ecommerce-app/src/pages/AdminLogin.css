@@ -1,8 +1,0 @@
-.admin-login-container {
-  max-width: 400px;
-  margin-top: 4rem;
-}
-
-.admin-login-error {
-  color: var(--danger);
-}
