@@ -1,0 +1,18 @@
+.wishlist-container {
+  padding: 0;
+}
+
+.wishlist-cart-btn {
+  width: auto;
+  padding: 0.5rem 1rem;
+}
+
+.wishlist-qty-pill {
+  width: auto;
+  gap: 0.75rem;
+}
+
+.wishlist-continue-link {
+  display: inline-block;
+  margin-top: 1rem;
+}

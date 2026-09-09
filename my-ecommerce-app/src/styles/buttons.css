@@ -1,0 +1,64 @@
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s ease;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn-text {
+  background: none;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+}
+
+.btn-text:hover {
+  color: var(--accent-dark);
+}
+
+/* ---------- Quantity pill (shared: ProductCard + Cart) ---------- */
+.qty-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(31, 170, 140, 0.1);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+}
+
+.qty-pill span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--success-dark);
+}
+
+.qty-btn {
+  background: var(--success);
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: var(--success-dark);
+}
