@@ -1,0 +1,25 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/Ecommerce
+            git pull
+            cd backend
+            docker build -t ecommerce-backend .
+            docker stop ecommerce-backend || true
+            docker rm ecommerce-backend || true
+            docker run -d --name ecommerce-backend -p 5000:5000 --env-file .env --restart unless-stopped ecommerce-backend
