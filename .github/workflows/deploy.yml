@@ -10,7 +10,18 @@ on:
       - 'vite.config.js'
 
 jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run test
+
   deploy-frontend:
+    needs: test-frontend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
