@@ -12,7 +12,7 @@ export const getCart = async (req, res) => {
   try {
     const cart = await getOrCreateCart(req.user.id);
     await cart.populate("items.product");
-    res.status(200).json(cart);
+    res.status(201).json(cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
