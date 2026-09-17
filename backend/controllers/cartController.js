@@ -38,7 +38,7 @@ export const addToCart = async (req, res) => {
 
     await cart.save();
     await cart.populate("items.product");
-    res.status(201).json(cart);
+    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
