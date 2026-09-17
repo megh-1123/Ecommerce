@@ -1,4 +1,4 @@
-// test backend auto-deploy
+// test JWT_SECRET fix
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
