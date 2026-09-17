@@ -22,6 +22,7 @@ jobs:
         env:
           NODE_ENV: test
           MONGO_URI: ${{ secrets.MONGO_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
   deploy-backend:
     needs: test-backend
