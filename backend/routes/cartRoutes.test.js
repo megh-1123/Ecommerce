@@ -1,23 +1,31 @@
 import request from 'supertest';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import app from '../server.js';
+import User from '../models/User.js';
 import Product from '../models/Product.js';
 import Cart from '../models/Cart.js';
 
 describe('Cart - add and remove item', () => {
+  const testEmail = `test-cart-${Date.now()}@example.com`;
+  const testPassword = 'TestPassword123!';
   let token;
+  let userId;
   let testProduct;
-  const testUserId = new mongoose.Types.ObjectId();
 
   beforeAll(async () => {
-    // Generate a valid JWT directly, same way login would, but without
-    // needing a real user account to exist.
-    token = jwt.sign({ id: testUserId.toString() }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    // Register a real test user through the real endpoint.
+    const registerRes = await request(app)
+      .post('/api/auth/register')
+      .send({ name: 'Test Cart User', email: testEmail, password: testPassword });
+    userId = registerRes.body._id;
 
-    // Create a temporary product to add to the cart, deleted in afterAll.
+    // Log in for real, exactly like a real user would, to get a real token.
+    const loginRes = await request(app)
+      .post('/api/auth/login')
+      .send({ email: testEmail, password: testPassword });
+    token = loginRes.body.token;
+
+    // Create a temporary product to add to the cart.
     testProduct = await Product.create({
       name: 'TEMP TEST PRODUCT - safe to ignore',
       price: 999,
@@ -27,10 +35,15 @@ describe('Cart - add and remove item', () => {
   });
 
   afterAll(async () => {
-    // Clean up everything this test created, so nothing real is left behind.
-    await Cart.deleteOne({ user: testUserId });
+    // Clean up everything this test created.
+    await Cart.deleteOne({ user: userId });
     await Product.deleteOne({ _id: testProduct._id });
+    await User.deleteOne({ _id: userId });
     await mongoose.connection.close();
+  });
+
+  it('logged in successfully and received a real token', () => {
+    expect(token).toBeDefined();
   });
 
   it('adds an item to the cart', async () => {
