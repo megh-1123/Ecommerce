@@ -46,7 +46,8 @@ function SuperAdminDashboard() {
     }
   };
 
-  useEffect(() => {
+    useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: fetch admin list on mount
     loadAdmins();
   }, []);
 

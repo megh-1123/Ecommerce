@@ -1,14 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
-const ThemeContext = createContext();
+import { useEffect, useState } from "react";
+import { ThemeContext } from "./theme-context";
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage first, fall back to the user's OS preference, then default to light
-    
-  const stored = localStorage.getItem("theme");
-  return stored === "dark" ? "dark" : "light"; // always defaults to light unless the user explicitly chose dark before
-});
+    const stored = localStorage.getItem("theme");
+    return stored === "dark" ? "dark" : "light";
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -24,8 +21,4 @@ export function ThemeProvider({ children }) {
       {children}
     </ThemeContext.Provider>
   );
-}
-
-export function useTheme() {
-  return useContext(ThemeContext);
 }

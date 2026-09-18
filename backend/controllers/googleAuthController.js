@@ -3,11 +3,11 @@ import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
-// eslint-disable-next-line no-undef
+ 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const generateToken = (userId) => {
-  // eslint-disable-next-line no-undef
+   
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
@@ -25,7 +25,7 @@ export const googleLogin = async (req, res) => {
     // This is the step that actually proves the token is genuine — never skip it.
     const ticket = await client.verifyIdToken({
       idToken: credential,
-      // eslint-disable-next-line no-undef
+       
       audience: process.env.GOOGLE_CLIENT_ID,
     });
 
@@ -56,6 +56,7 @@ export const googleLogin = async (req, res) => {
     });
     
   } catch (error) {
+    console.error(error);
     res.status(401).json({ message: "Google authentication failed" });
   }
 };

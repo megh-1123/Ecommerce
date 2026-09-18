@@ -104,8 +104,10 @@ function AdminDashboard() {
     }
   };
 
-  useEffect(() => {
+    useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: fetch tab data on mount/tab change
     loadTab(tab);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- loadTab is stable, only `tab` should trigger a refetch
   }, [tab]);
 
   const handleDeleteProduct = async (id) => {

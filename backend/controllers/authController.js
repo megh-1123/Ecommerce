@@ -5,7 +5,7 @@ import { tokenBlocklist } from "../middleware/authMiddleware.js";
 
 // Generate a JWT token for a given user id
 const generateToken = (userId) => {
-  // eslint-disable-next-line no-undef
+   
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 

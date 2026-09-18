@@ -24,12 +24,12 @@ const run = async () => {
   const created = await Product.insertMany(products);
   console.log(`Seeded ${created.length} products.`);
   await mongoose.connection.close();
-  // eslint-disable-next-line no-undef
+   
   process.exit(0);
 };
 
 run().catch((err) => {
   console.error("Seeding failed:", err);
-  // eslint-disable-next-line no-undef
+   
   process.exit(1);
 });

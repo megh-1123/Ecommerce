@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ message: err.message || "Server error" });
 });
 
-// eslint-disable-next-line no-undef
+ 
 const PORT = process.env.PORT || 5000;
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
