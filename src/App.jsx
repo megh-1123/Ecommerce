@@ -1,4 +1,4 @@
-// test auto-deploy v2
+// test E2E smoke test pipeline
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
