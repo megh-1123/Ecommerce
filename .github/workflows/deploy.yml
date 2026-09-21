@@ -44,3 +44,20 @@ jobs:
           aws-region: us-east-1
 
       - run: aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+
+  e2e-smoke-test:
+    needs: deploy-frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd e2e && npm ci
+      - run: cd e2e && node siteFlow.test.js
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+      - run: cd e2e && node cleanup.js
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        if: always()
